@@ -12,6 +12,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+const home = require('./routes/home');
+
+app.use('/', home);
 
 app.listen(3000, () => {
     console.log('Server started on port 3000');
