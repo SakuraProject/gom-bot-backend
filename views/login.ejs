@@ -8,5 +8,11 @@
     </head>
     <body>
         <h6>自動でdiscordのログインページに飛びます</h6>
+        <script>
+            //5秒後に自動リダイレクト
+            setTimeout(function(){
+                window.location.href = "https://discordapp.com/api/oauth2/authorize?client_id=985852917489737728&response_type=code&scope=identify";
+            }, 5000);
+        </script>
     </body>
 </html>
