@@ -13,8 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const home = require('./routes/home');
+const login = require('./routes/login');
 
 app.use('/', home);
+app.use('/login', login);
 
 app.listen(3000, () => {
     console.log('Server started on port 3000');
