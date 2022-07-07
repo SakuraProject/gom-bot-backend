@@ -1,35 +1,44 @@
 const express = require('express');
 const router = express.Router();
-const oauth2 = require("../functions/oauth");
-const config = require("../config.json");
+const oauth = require('../functions/oauth');
+const config = require('../config.json');
 
-router.get('/', (req, res) => {
-    const {code} = req.query;
+router.get('/', async function (req, res) {
+
+    const { code } = req.query;
+
+
     if (code) {
-        oauth2.getToken(code)
-        .then(token => {
-            console.log(token);
-            oauth2.getUser(token)
-            .then(user => {
-                res.render('login', { user: user });
-            })
-            .catch(err => {
-                console.log(err);
-                res.redirect(`/error?err=${err}`);
-            }
-            );
-        }
-        )
-        .catch(err => {
-            console.log(err);
-            res.redirect(`/error?err=${err}`);
-        }
-        );
-    } else {
-        res.render('login');
-    }
-}
-);
 
+        const oauthdata = await oauth(code);
+
+        res.cookie('refresh_token', oauthdata.refresh_token, {
+            httpOnly: true
+        });
+        const userdata = await userdat(oauthdata.token_type, oauthdata.access_token);
+        res.redirect('/');
+        
+    } else {
+
+        if (!req.cookies.refresh_token || req.cookies.refresh_token === 'undefined') {
+
+
+            res.render('login');
+
+        } else {
+
+            const { token_type, access_token, refresh_token } = await refresh(req.cookies.refresh_token);
+            const { username, id } = await userdat(token_type, access_token)
+
+            res.cookie('refresh_token', refresh_token, {
+                httpOnly: true
+            });
+
+            res.redirect('/');
+
+        };
+
+    }
+})
 
 module.exports = router;
