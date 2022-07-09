@@ -1,0 +1,56 @@
+<html>
+  <head>
+      <% if (q){ %>
+      <title>Sakura Bot-サーバー掲示板 | 検索-<%= q %></title>
+      <% }else{ %>
+      <title>Sakura Bot-サーバー掲示板</title>
+      <% } %>
+  </head>
+  <body>
+    <meta name="viewport" content="width=device-width," initial-scale="1," minimum-scale="1," maximum-scale="2," shrink-to-fit="no">
+    <style>
+        .search {
+            margin:30px;
+        }
+        .listbox {
+            background:#ffbdde;
+            margin:30px;
+            border:solid 1px #46AF16;
+            height:400px;
+        }
+        .icon {
+            height:64px;
+            width:64px;
+            float:right;
+            margin:10px;
+        }
+        .des {
+            height:200px;
+            margin:10px;
+            overflow: auto;
+        }
+        .join {
+            height:32px;
+            margin:20px;
+            width:60%;
+            background:#46AF16;
+        }
+    </style>
+    <form class="search">
+        <input name="q" type="search">
+        <input type="submit" value="検索する">
+    </form>
+    <% for(i=0;i<response.length;i++){ %>
+    <div class="listbox">
+       <img src="<%= response[i].icon %>" class="icon"/>
+       <h2>Server Name:<%= response[i].name %></h2>
+       <div class="des"><%= response[i].description %></div>
+       <center>
+           <a href="<%= response[i].link %>">
+               <div class="join">参加する</div>
+           </a>
+       </center>
+    </div>
+        <% } %>
+  </body>
+</html>
