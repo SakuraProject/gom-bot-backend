@@ -4,7 +4,7 @@ const router = express.Router()
 expressWs(router);
 
 router.ws('/', (ws, req) => {
-  console.log('Ú‘±¬Œ÷');
+  console.log('Websocket is connected');
   ws.on('message', msg => {
     if(msg=="numdata"){
       ws.send(""+module.exports.wait.length)
