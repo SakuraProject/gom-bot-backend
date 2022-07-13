@@ -4,7 +4,7 @@ const router = express.Router()
 expressWs(router);
 
 router.ws('/', async (ws, req) => {
-  console.log('Ú‘±¬Œ÷');
+  console.log('connected to bot');
   ws.on('message',async msg => {
     data = JSON.parse(msg);
     if(data["type"]=="cmd"){
