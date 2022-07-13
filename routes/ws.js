@@ -25,13 +25,13 @@ module.exports = obj;
 module.exports.res = [];
 module.exports.jsk = async function(args){
   const res = new Promise((resolve) => resolve(eval(args["code"])));
-  args["res"] = res.then(async (out) => {
+  res.then(async (out) => {
     if (typeof out !== "string") {
       out = require("util").inspect(out, { depth: 0 });
     }
-    return out
+    args["res"] = out
   }).catch(async (err) => {
-    return err.toString();
+    args["res"] = err.toString();
   });
   return args
 }
