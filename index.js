@@ -15,9 +15,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const home = require('./routes/home');
 const ws = require('./routes/ws');
+const rocations = require('./routes/rocations');
 
 app.use('/', home);
 app.use('/ws',ws.router);
+app.use('/rocations',rocations);
 app.listen(3000, () => {
     console.log('Server started on port 3000');
     }
