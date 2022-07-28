@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const ews = require('express-ws')(app);
 const bodyParser = require('body-parser');
 const path = require('path');
 
@@ -13,9 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const home = require('./routes/home');
+const ws = require('./routes/ws');
 
 app.use('/', home);
-
+app.use('/ws',ws.router);
 app.listen(3000, () => {
     console.log('Server started on port 3000');
     }
