@@ -16,7 +16,7 @@ router.get('/', async function (req, res) {
         r = {};
         r["type"] = "cmd";
         r["cmd"] = "command";
-        r["args"] = [];
+        r["args"] = {};
         r["args"]["id"] = cmd;
         ws.send(JSON.stringify(r));
         sleep.sleep(1);
@@ -25,7 +25,7 @@ router.get('/', async function (req, res) {
         r = {};
         r["type"] = "cmd";
         r["cmd"] = "help_cmdlist";
-        r["args"] = [];
+        r["args"] = {};
         r["args"]["id"] = cat;
         r["args"]["l"] = ll;
         ws.send(JSON.stringify(r));
@@ -35,7 +35,7 @@ router.get('/', async function (req, res) {
         r = {};
         r["type"] = "cmd";
         r["cmd"] = "help_catlist";
-        r["args"] = [];
+        r["args"] = {};
         r["args"]["id"] = "catlist";
         r["args"]["l"] = ll;
         ws.send(JSON.stringify(r));
