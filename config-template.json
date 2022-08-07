@@ -2,4 +2,10 @@
     "client_id": "discordのidを入れてください",
     "client_secret": "discordのsecretを入れてください",
     "redirect_uri": "discord developer portalで登録したredirect_uriを入れてください"
+    "mysql": {
+       "host": "mysqlのサーバーアドレス",
+       "user": "mysqlのユーザー名",
+       "password": "mysqlのパスワード",
+       "database": "データベース名"
+    }
 }
