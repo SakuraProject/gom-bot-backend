@@ -34,7 +34,7 @@ router.get('/', async function (req, res) {
         while(!module.parent.exports.ws.exports.res["help_cmdlist"]){
         await setTimeout(1);
         }
-        wsr = module.parent.exports.ws.exports.res["help_cmdlist"][cmd];
+        wsr = module.parent.exports.ws.exports.res["help_cmdlist"][cat];
     }else{
         r = {};
         r["type"] = "cmd";
