@@ -1,0 +1,62 @@
+<html>
+  <head>
+      <title>Sakura Bot-コマンドヘルプ</title>
+  </head>
+  <body>
+    <meta name="viewport" content="width=device-width," initial-scale="1," minimum-scale="1," maximum-scale="2," shrink-to-fit="no">
+    <style>
+        .listbox {
+            background:#ffbdde;
+            margin:30px;
+            border:solid 1px #46AF16;
+            height:50px;
+            border-radius:25px;
+        }
+    </style>
+    <% if (cmd){ %>
+    <% if (wsr["res"]["type"] == "Group"||wsr["res"]["type"] == "HybridGroup"){ %>
+    <% for(i=0;i<wsr["res"]["commands"].length;i++){ %>
+    <a href="/help?cmd=<%= wsr["res"]["commands"][i]["res"]["name"] %>">
+    <div class="listbox">
+    <%= wsr["res"]["commands"][i]["res"]["name"] %><% if (wsr["res"]["commands"][i]["res"]["doc"]){ %>：<% if (wsr["res"]["commands"][i]["res"]["doc"]["sd"][l]){ %><%= wsr["res"]["commands"][i]["res"]["doc"]["sd"][l] %><% }else{ %><%= wsr["res"]["commands"][i]["res"]["doc"]["sd"]["default"] %><% } %><% } %>
+    </div>
+    </a>
+    <% } %>
+    <% }else{ %>
+    <% if (wsr["res"]["doc"]){ %>
+    <pre>
+    <% if (wsr["res"]["doc"]["desc"][l]){ %><%= wsr["res"]["doc"]["desc"][l] %><% }else{ %><%= wsr["res"]["doc"]["desc"]["default"] %><% } %>
+    </pre>
+    <% }else{ %>
+    このコマンドにはまだ説明文がありません。使い方はSakuraProjectサポートサーバーまでお問い合わせください
+    <% } %>
+    <% } %>
+    <% }else if (cat){ %>
+    <% if (lpack[l]){ %>
+    <%= lpack[l]["cmddesc"] %>
+    <% }else{ %>
+    <%= lpack["ja"]["cmddesc"] %>
+    <% } %>
+    <% for(i=0;i<wsr["res"].length;i++){ %>
+    <a href="/help?cmd=<%= wsr["res"][i]["res"]["name"] %>">
+    <div class="listbox">
+    <%= wsr["res"][i]["res"]["name"] %><% if (wsr["res"][i]["res"]["doc"]){ %>：<% if (wsr["res"][i]["res"]["doc"]["sd"][l]){ %><%= wsr["res"][i]["res"]["doc"]["sd"][l] %><% }else{ %><%= wsr["res"][i]["res"]["doc"]["sd"]["default"] %><% } %><% } %>
+    </div>
+    </a>
+    <% } %>
+    <% }else{ %>
+    <% if (lpack[l]){ %>
+    <%= lpack[l]["catdesc"] %>
+    <% }else{ %>
+    <%= lpack["ja"]["catdesc"] %>
+    <% } %>
+    <% for(i=0;i<wsr["res"].length;i++){ %>
+    <a href="/help?cat=<%= wsr["res"][i]["name"] %>">
+    <div class="listbox">
+    <%= wsr["res"][i]["rname"] %>
+    </div>
+    </a>
+    <% } %>
+    <% } %>
+  </body>
+</html>
