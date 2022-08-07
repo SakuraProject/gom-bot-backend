@@ -18,9 +18,9 @@ router.get('/', async function (req, res) {
         r["cmd"] = "command";
         r["args"] = [];
         r["args"]["id"] = cmd;
-        ws.ws.send(JSON.stringify(r));
+        ws.exports.ws.send(JSON.stringify(r));
         sleep.sleep(1);
-        wsr = ws.res["command"][cmd];
+        wsr = ws.exports.res["command"][cmd];
     }else if(cat){
         r = [];
         r["type"] = "cmd";
@@ -28,9 +28,9 @@ router.get('/', async function (req, res) {
         r["args"] = [];
         r["args"]["id"] = cat;
         r["args"]["l"] = ll;
-        ws.ws.send(JSON.stringify(r));
+        ws.exports.ws.send(JSON.stringify(r));
         sleep.sleep(1);
-        wsr = ws.res["help_cmdlist"][cmd];
+        wsr = ws.exports.res["help_cmdlist"][cmd];
     }else{
         r = [];
         r["type"] = "cmd";
@@ -38,9 +38,9 @@ router.get('/', async function (req, res) {
         r["args"] = [];
         r["args"]["id"] = "catlist";
         r["args"]["l"] = ll;
-        ws.ws.send(JSON.stringify(r));
+        ws.exports.ws.send(JSON.stringify(r));
         sleep.sleep(1);
-        wsr = ws.res["help_catlist"]["catlist"];
+        wsr = ws.exports.res["help_catlist"]["catlist"];
     }
     res.render('help',{wsr: wsr,cmd: cmd,cat: cat,l: ll,lpack: lpack});
         
