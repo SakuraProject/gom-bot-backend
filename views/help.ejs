@@ -38,9 +38,9 @@
     <%= lpack["ja"]["cmddesc"] %>
     <% } %>
     <% for(i=0;i<wsr["res"].length;i++){ %>
-    <a href="/help?cmd=<%= wsr["res"][i]["name"] %>">
+    <a href="/help?cmd=<%= wsr["res"][i]["res"]["name"] %>">
     <div class="listbox">
-    <%= wsr["res"][i]["name"] %><% if (wsr["res"][i]["doc"]){ %>：<% if (wsr["res"][i]["doc"]["sd"][l]){ %><%= wsr["res"][i]["doc"]["sd"][l] %><% }else{ %><%= wsr["res"][i]["doc"]["sd"]["default"] %><% } %><% } %>
+    <%= wsr["res"][i]["res"]["name"] %><% if (wsr["res"][i]["res"]["doc"]){ %>：<% if (wsr["res"][i]["res"]["doc"]["sd"][l]){ %><%= wsr["res"][i]["res"]["doc"]["sd"][l] %><% }else{ %><%= wsr["res"][i]["res"]["doc"]["sd"]["default"] %><% } %><% } %>
     </div>
     </a>
     <% } %>
