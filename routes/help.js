@@ -19,7 +19,9 @@ router.get('/', async function (req, res) {
         r["args"] = {};
         r["args"]["id"] = cmd;
         ws.send(JSON.stringify(r));
+        while(!module.parent.exports.ws.exports.res["command"]){
         await setTimeout(1);
+        }
         wsr = module.parent.exports.ws.exports.res["command"][cmd];
     }else if(cat){
         r = {};
@@ -29,7 +31,9 @@ router.get('/', async function (req, res) {
         r["args"]["id"] = cat;
         r["args"]["l"] = ll;
         ws.send(JSON.stringify(r));
+        while(!module.parent.exports.ws.exports.res["help_cmdlist"]){
         await setTimeout(1);
+        }
         wsr = module.parent.exports.ws.exports.res["help_cmdlist"][cmd];
     }else{
         r = {};
@@ -39,7 +43,9 @@ router.get('/', async function (req, res) {
         r["args"]["id"] = "catlist";
         r["args"]["l"] = ll;
         ws.send(JSON.stringify(r));
+        while(!module.parent.exports.ws.exports.res["help_catlist"]){
         await setTimeout(1);
+        }
         wsr = module.parent.exports.ws.exports.res["help_catlist"]["catlist"];
     }
     res.render('help',{wsr: wsr,cmd: cmd,cat: cat,l: ll,lpack: lpack});
