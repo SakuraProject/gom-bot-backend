@@ -5,7 +5,7 @@ expressWs(router);
 
 router.ws('/', async (ws, req) => {
   console.log('connected to bot');
-  module.exports.ws = ws;
+  module.parent.exports.ws = ws;
   ws.on('message',async msg => {
     data = JSON.parse(msg);
     if(data["type"]=="cmd"){
