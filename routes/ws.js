@@ -19,6 +19,7 @@ router.ws('/', async (ws, req) => {
       }
       module.exports.res[data["cmd"]][data["args"]["id"]] = data["args"];
     }
+    module.parent.exports.ws = module;
   })
 })
 obj = {}
