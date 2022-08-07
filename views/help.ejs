@@ -14,7 +14,7 @@
         }
     </style>
     <% if (cmd){ %>
-    <% if (wsr["res"]["type"] == "Group"){ %>
+    <% if (wsr["res"]["type"] == "Group"||wsr["res"]["type"] == "HybridGroup"){ %>
     <% for(i=0;i<wsr["res"]["commands"].length;i++){ %>
     <a href="/help?cmd=<%= wsr["res"]["commands"][i]["name"] %>">
     <div class="listbox">
