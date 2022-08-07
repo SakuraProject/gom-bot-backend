@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ws = require('./routes/ws');
+const ws = require('./ws');
 const sleep = require('sleep');
 lpack = [];
 lpack["ja"] = {"catdesc": "このページはSakuraBotのコマンドヘルプです。カテゴリを選択することにより、カテゴリに含まれるコマンドを見ることが出来ます","cmddesc":"このページはSakuraBotのコマンドヘルプです。コマンドを選択するとコマンドの説明を表示します。もしグループコマンドの場合はグループ内のコマンドリストを表示します"};
