@@ -8,7 +8,9 @@ lpack["en"] = {"catdesc": "This page is the command help for SakuraBot. By selec
 router.get('/', async function (req, res) {
     const { l,cat,cmd } = req.query;
     if (!l){
-        l = "ja";
+        ll = "ja";
+    }else{
+        ll = l;
     }
     if(cmd){
         r = [];
@@ -25,7 +27,7 @@ router.get('/', async function (req, res) {
         r["cmd"] = "help_cmdlist";
         r["args"] = [];
         r["args"]["id"] = cat;
-        r["args"]["l"] = l;
+        r["args"]["l"] = ll;
         ws.ws.send(JSON.stringify(r));
         sleep.sleep(1);
         wsr = ws.res["help_cmdlist"][cmd];
@@ -35,12 +37,12 @@ router.get('/', async function (req, res) {
         r["cmd"] = "help_catlist";
         r["args"] = [];
         r["args"]["id"] = "catlist";
-        r["args"]["l"] = l;
+        r["args"]["l"] = ll;
         ws.ws.send(JSON.stringify(r));
         sleep.sleep(1);
         wsr = ws.res["help_catlist"]["catlist"];
     }
-    res.render('help',{wsr: wsr,cmd: cmd,cat: cat,l: l,lpack: lpack});
+    res.render('help',{wsr: wsr,cmd: cmd,cat: cat,l: ll,lpack: lpack});
         
   
 });
