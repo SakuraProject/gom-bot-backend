@@ -13,7 +13,7 @@ router.get('/', async function (req, res) {
         ll = l;
     }
     if(cmd){
-        r = [];
+        r = {};
         r["type"] = "cmd";
         r["cmd"] = "command";
         r["args"] = [];
@@ -22,7 +22,7 @@ router.get('/', async function (req, res) {
         sleep.sleep(1);
         wsr = module.parent.exports.ws.exports.res["command"][cmd];
     }else if(cat){
-        r = [];
+        r = {};
         r["type"] = "cmd";
         r["cmd"] = "help_cmdlist";
         r["args"] = [];
@@ -32,7 +32,7 @@ router.get('/', async function (req, res) {
         sleep.sleep(1);
         wsr = module.parent.exports.ws.exports.res["help_cmdlist"][cmd];
     }else{
-        r = [];
+        r = {};
         r["type"] = "cmd";
         r["cmd"] = "help_catlist";
         r["args"] = [];
