@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const config = require('../config.json');
 const mysql = require('mysql');
+const client = mysql.createConnection(config["mysql"]);
 
 
 router.get('/', async function (req, res) {
@@ -9,8 +10,6 @@ router.get('/', async function (req, res) {
     const { q } = req.query;
     
     if (q) {
-       
-       const client = mysql.createConnection(config["mysql"]);
        
        client.connect();
 
@@ -43,8 +42,6 @@ router.get('/', async function (req, res) {
         })
        
     }else{
-       
-       const client = mysql.createConnection(config["mysql"]);
        
        client.connect();
 
