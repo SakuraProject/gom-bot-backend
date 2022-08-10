@@ -3,15 +3,13 @@ const router = express.Router();
 const config = require('../config.json');
 const mysql = require('mysql');
 const client = mysql.createConnection(config["mysql"]);
-
+client.connect();
 
 router.get('/', async function (req, res) {
 
     const { q } = req.query;
     
     if (q) {
-       
-       client.connect();
 
        words = q.split(" ");
 
@@ -42,8 +40,6 @@ router.get('/', async function (req, res) {
         })
        
     }else{
-       
-       client.connect();
 
        client.query('SELECT * FROM rocations ORDER BY `uptime` desc', function(error, response) {
 
