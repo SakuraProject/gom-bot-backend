@@ -24,7 +24,7 @@ router.post('/', async function (req, res) {
         if (data.success === true) {
             res.render('captcha',{reqkey: reqkey,sitekey: sitekey, vcode: vcode,success: data.success});
         } else {
-            res.render('captcha',{error: "hCaptcha‚ÉŽ¸”s‚µ‚Ü‚µ‚½"});
+            res.render('captcha',{error: "hCaptchaã«å¤±æ•—ã—ã¾ã—ãŸ"});
         }
   }).catch(async (err) => {res.render('captcha',{error: err.toString()});});
 
