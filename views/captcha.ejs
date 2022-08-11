@@ -1,3 +1,4 @@
+<% if(!error){ %>
 <% if(reqkey){ %>
 <% if(!success){ %>
 <form action="post">
@@ -10,4 +11,7 @@
 <% } %>
 <% }else{ %>
 <h1>403 Captcha をやり直してください</h1>
+<% } %>
+<% }else{ %>
+<%= error %>
 <% } %>
