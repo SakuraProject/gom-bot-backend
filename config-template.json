@@ -7,5 +7,9 @@
        "user": "mysqlのユーザー名を入れてください",
        "password": "mysqlのパスワードを入れてください",
        "database": "データベース名を入れてください"
-    }
+    },
+    "hcaptcha": {
+       "sitekey": "hcaptchaのサイトキーを入力してください",
+       "sicretkey": "hcaptchaのシークレットキーを入力してください"
+    
 }
