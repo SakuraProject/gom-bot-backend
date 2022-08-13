@@ -15,7 +15,8 @@ router.get('/', async function (req, res) {
 
 router.post('/', async function (req, res) {
 
-    const { h-captcha-response,reqkey } = req.query;
+    const { reqkey } = req.query;
+    const token = req.query["h-captcha-response"];
 
     vcode = module.parent.exports.ws.exports.res["captcha"][reqkey]["vcode"];
 
