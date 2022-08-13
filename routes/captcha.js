@@ -23,7 +23,7 @@ router.post('/', async function (req, res) {
     verify(secret, token).then((data) => {
 
         if (data.success === true) {
-            res.render('captcha',{reqkey: reqkey,sitekey: sitekey, vcode: vcode,success: data.success});
+            res.render('captcha',{reqkey: reqkey,sitekey: sitekey, vcode: vcode,success: data.success,error: null});
         } else {
             res.render('captcha',{error: "hCaptchaに失敗しました"});
         }
