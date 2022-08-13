@@ -9,7 +9,7 @@ router.get('/', async function (req, res) {
 
     const { reqkey } = req.query;
 
-    res.render('captcha',{reqkey: reqkey,sitekey: sitekey});
+    res.render('captcha',{reqkey: reqkey,sitekey: sitekey,error: null,success: null});
 
 });
 
