@@ -30,3 +30,4 @@ router.post('/', async function (req, res) {
   }).catch(async (err) => {res.render('captcha',{error: err.toString()});});
 
 });
+module.exports=router
