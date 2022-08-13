@@ -17,11 +17,13 @@ const home = require('./routes/home');
 const ws = require('./routes/ws');
 const rocations = require('./routes/rocations');
 const help = require('./routes/help');
+const cap = require('./routes/captcha');
 
 app.use('/', home);
 app.use('/ws',ws.router);
 app.use('/rocations',rocations);
 app.use('/help',help);
+app.use('/captcha',cap);
 app.listen(3000, () => {
     console.log('Server started on port 3000');
     }
