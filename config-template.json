@@ -10,6 +10,6 @@
     },
     "hcaptcha": {
        "sitekey": "hcaptchaのサイトキーを入力してください",
-       "sicretkey": "hcaptchaのシークレットキーを入力してください"
+       "secretkey": "hcaptchaのシークレットキーを入力してください"
     }
 }
