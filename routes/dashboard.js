@@ -22,10 +22,10 @@ router.get('/', async function (req, res) {
     while(!module.parent.exports.ws.exports.res["shareguilds"]){
     await setTimeout(1);
     }
-    while(!module.parent.exports.ws.exports.res["shareguilds"]){
+    while(!module.parent.exports.ws.exports.res["shareguilds"][id]){
     await setTimeout(1);
     }
-    guilds = module.parent.exports.ws.exports.res["shareguilds"][id];
+    guilds = module.parent.exports.ws.exports.res["shareguilds"][id]["guilds"];
     
     const {g, ch, l} = req.query;
     if (!l){
@@ -35,6 +35,25 @@ router.get('/', async function (req, res) {
     }
     if(!g){
       res.render('dashboard',{guilds: guilds,g: g,ch: ch,lpack: lpack,ll:ll});
+    }else{
+      if(!ch){
+        res.render('dashboard',{guilds: guilds,g: g,ch: ch,lpack: lpack,ll:ll});
+      }else{
+        r = {};
+        r["type"] = "cmd";
+        r["cmd"] = "commands";
+        r["args"] = {};
+        r["args"]["id"] = "commands";
+        ws.send(JSON.stringify(r));
+        while(!module.parent.exports.ws.exports.res["commands"]){
+          await setTimeout(1);
+        }
+        while(!module.parent.exports.ws.exports.res["commands"]["commands"]){
+          await setTimeout(1);
+        }
+        cmds = module.parent.exports.ws.exports.res["commands"]["commands"]["commands"]
+        res.render('dashboard',{guilds: guilds,g: g,ch: ch,lpack: lpack,ll:ll,cmds: cmds});
+      }
     }
   }
 })
