@@ -4,8 +4,11 @@ const oauth = require('../functions/oauth');
 
 lpack = [];
 router.get('/', async function (req, res) {
-  if (!req.cookies.refresh_token || req.cookies.refresh_token === 'undefined') {
-    res.redirect('/login');
+  const {g, ch, l, redir} = req.query;
+  if(redir){
+    res.render('dashboard',{redir: redir});
+  }else if (!req.cookies.refresh_token || req.cookies.refresh_token === 'undefined') {
+    res.redirect('/dashboard?redir=/login');
   }else{
     const { token_type, access_token, refresh_token } = await oauth.refresh_token(req.cookies.refresh_token);
     const { username, id } = await oauth.getUser(access_token)
@@ -27,7 +30,6 @@ router.get('/', async function (req, res) {
     }
     guilds = module.parent.exports.ws.exports.res["shareguilds"][id]["guilds"];
     
-    const {g, ch, l} = req.query;
     if (!l){
         ll = "ja";
     }else{
