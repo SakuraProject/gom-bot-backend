@@ -225,6 +225,30 @@ body {
       <div class="grid"><a href="/dashboard?g=<%= guilds[i]["id"] %>"><% if(guilds[i]["icon"]["url"]){ %><img class="icon" src="<%= guilds[i]["icon"]["url"] %>" align="middle"><% }else{ %><div class="icon" style="overfllow:hidden;"><%= guilds[i]["name"] %></div><% } %></a></div>
     <% } %>
 </div>
+    <% }else{ %>
+        <% if(!ch){ %>
+        <style>
+        .listbox {
+            background:#ffbdde;
+            margin:30px;
+            border:solid 1px #46AF16;
+            height:60px;
+            border-radius:25px;
+        }
+        </style>
+        <% for(i=0;i<guilds.length;i++){ %>][ %>
+        <% if(g==guilds[i]["id"]){ %>
+        <% for(ci=0;ci<guilds[i]["text_channels"].length;ci++){ %>
+        <a href="/dashboard?g=<%= guilds[i]["id"] %>&ch=<%= guilds[i]["text_channels"][ci]["id"] %>">
+        <div class="listbox">
+        <%= guilds[i]["text_channels"][ci]["name"] %>
+        </div>
+        </a>
+        <% } %>
+        <% } %>
+        <% } %>
+        <% }else{ %>
+        <% } %>
     <% } %>
     </div>
   </div>
