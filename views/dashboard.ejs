@@ -107,7 +107,7 @@ body {
     .first,
     .second,
     .third {
-      height: 100vh;
+      height: 100%;
       width: 100vw;
     }
     .first,
@@ -183,8 +183,8 @@ body {
       }
 
     .txt {
-      margin-top: calc(50vh - 43px);
       position: absolute;
+      height: fit-content;
       width: 100%;
       z-index: 1000;
     }
@@ -198,11 +198,11 @@ body {
       margin-top: 26px;
     }
 </style>
-  <div class="holder">
+  <div class="holder" id="holder">
     <div class="first"></div>
     <div class="second"></div>
     <div class="third"></div>
-    <div class="txt">
+    <div class="txt" id="txt">
     <% if(!g){ %>
     <style>
         .icon {
@@ -252,6 +252,11 @@ body {
     <% } %>
     </div>
   </div>
+  <script>
+      txt = document.getElementById("txt");
+      hol = document.getElementById("holder");
+      hol.style.height = txt.clientHeight;
+  </script>
 <% } %>
 </body>
 </html>
