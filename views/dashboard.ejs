@@ -236,7 +236,7 @@ body {
             border-radius:25px;
         }
         </style>
-        <% for(i=0;i<guilds.length;i++){ %>][ %>
+        <% for(i=0;i<guilds.length;i++){ %>
         <% if(g==guilds[i]["id"]){ %>
         <% for(ci=0;ci<guilds[i]["text_channels"].length;ci++){ %>
         <a href="/dashboard?g=<%= guilds[i]["id"] %>&ch=<%= guilds[i]["text_channels"][ci]["id"] %>">
