@@ -12,7 +12,7 @@ router.get('/', async function (req, res) {
   }else{
     const { token_type, access_token, refresh_token } = await oauth.refresh_token(req.cookies.refresh_token);
     const { username, id } = await oauth.getUser(access_token)
-
+    const ws = module.parent.exports.ws.exports.ws;
     res.cookie('refresh_token', refresh_token, {
       httpOnly: true
     });
