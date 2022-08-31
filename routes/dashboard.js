@@ -36,10 +36,10 @@ router.get('/', async function (req, res) {
         ll = l;
     }
     if(!g){
-      res.render('dashboard',{guilds: guilds,g: g,ch: ch,lpack: lpack,ll:ll});
+      res.render('dashboard',{guilds: guilds,g: g,ch: ch,lpack: lpack,ll:ll,redir: redir});
     }else{
       if(!ch){
-        res.render('dashboard',{guilds: guilds,g: g,ch: ch,lpack: lpack,ll:ll});
+        res.render('dashboard',{guilds: guilds,g: g,ch: ch,lpack: lpack,ll:ll,redir: redir});
       }else{
         r = {};
         r["type"] = "cmd";
@@ -54,7 +54,7 @@ router.get('/', async function (req, res) {
           await setTimeout(1);
         }
         cmds = module.parent.exports.ws.exports.res["commands"]["commands"]["commands"]
-        res.render('dashboard',{guilds: guilds,g: g,ch: ch,lpack: lpack,ll:ll,cmds: cmds});
+        res.render('dashboard',{guilds: guilds,g: g,ch: ch,lpack: lpack,ll:ll,cmds: cmds,redir: redir});
       }
     }
   }
