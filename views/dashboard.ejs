@@ -222,7 +222,7 @@ body {
     </style>
     <div class="wrapper">
     <% for(i=0;i<guilds.length;i++){ %>
-      <div class="grid"><a href="/dashboard?g=<%= guilds[i]["id"] %>"><% if(guilds[i]["icon"]["url"]){ %><img class="icon" src="<= guilds[i]["icon"]["url"] %>" align="middle"><% }else{ %><div class="icon" style="overfllow:hidden;"><= guilds[i]["name"] %></div><% } %></a></div>
+      <div class="grid"><a href="/dashboard?g=<%= guilds[i]["id"] %>"><% if(guilds[i]["icon"]["url"]){ %><img class="icon" src="<%= guilds[i]["icon"]["url"] %>" align="middle"><% }else{ %><div class="icon" style="overfllow:hidden;"><%= guilds[i]["name"] %></div><% } %></a></div>
     <% } %>
 </div>
     <% } %>
