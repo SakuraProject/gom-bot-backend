@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const oauth = require('../functions/oauth');
-
+const { setTimeout } = require('timers/promises');
 lpack = [];
 router.get('/', async function (req, res) {
   const {g, ch, l, redir} = req.query;
