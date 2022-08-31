@@ -255,7 +255,9 @@ body {
   <script>
       txt = document.getElementById("txt");
       hol = document.getElementById("holder");
+      if(hol.clientHeight<txt.clientHeight){
       hol.style.height = txt.clientHeight;
+      }
   </script>
 <% } %>
 </body>
