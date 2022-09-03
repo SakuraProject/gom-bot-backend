@@ -3,6 +3,7 @@ const router = express.Router();
 const oauth = require('../functions/oauth');
 const { setTimeout } = require('timers/promises');
 lpack = [];
+lpack["ja"] = {};
 router.get('/', async function (req, res) {
   const {g, ch, l, redir} = req.query;
   if(redir){
