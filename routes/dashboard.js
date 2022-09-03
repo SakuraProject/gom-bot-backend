@@ -75,7 +75,11 @@ router.post('/invoke', async function (req, res) {
   r["args"]["id"] = id;
   r["args"]["ch"] = ch;
   r["args"]["content"] = cm;
-  console.log(JSON.stringify(r))
+  if(module.parent.exports.ws.exports.res["send"]){
+    if(module.parent.exports.ws.exports.res["send"][id]){
+      delete module.parent.exports.ws.exports.res["send"][id]
+    }
+  }
   ws.send(JSON.stringify(r));
   while(!module.parent.exports.ws.exports.res["send"]){
      await setTimeout(1);
