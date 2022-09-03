@@ -8,17 +8,14 @@
 html, body {
   height: 100%;
 }
-
 html {
   background: #eee;
 }
-
 body {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .box {
   width: 300px;
   height: 300px;
@@ -29,7 +26,6 @@ body {
   overflow: hidden;
   transform: translate3d(0, 0, 0);
 }
-
 .wave {
   opacity: .4;
   position: absolute;
@@ -44,17 +40,14 @@ body {
   border-radius: 43%;
   animation: drift 3000ms infinite linear;
 }
-
 .wave.-three {
   animation: drift 5000ms infinite linear;
 }
-
 .wave.-two {
   animation: drift 7000ms infinite linear;
   opacity: .1;
   background: yellow;
 }
-
 .box:after {
   content: '';
   display: block;
@@ -66,7 +59,6 @@ body {
   z-index: 11;
   transform: translate3d(0, 0, 0);
 }
-
 .title {
   position: absolute;
   left: 0;
@@ -120,7 +112,7 @@ body {
       opacity: 0;
     }
     .holder {
-      height: 100vh;
+      height: 100%;
       position: relative;
       z-index: 1;
     }
@@ -142,7 +134,6 @@ body {
         90% {opacity: 0.8;}
         100% {opacity: 1.0;}
       }
-
     .second {
       animation: second 10s infinite; animation-delay: 2s;
       background: linear-gradient(#19eaa6, #00a1f0);
@@ -161,7 +152,6 @@ body {
         90% {opacity: 0.2;}
         100% {opacity: 0;}
       }
-
     .third {
       animation: third 10s infinite;
       animation-delay: 8s;
@@ -181,11 +171,10 @@ body {
         90% {opacity: 0.2;}
         100% {opacity: 0;}
       }
-
     .txt {
       position: absolute;
-      height: fit-content;
       width: 100%;
+      height: fit-content;
       z-index: 1000;
     }
     h1 {
@@ -248,6 +237,138 @@ body {
         <% } %>
         <% } %>
         <% }else{ %>
+        <style>
+            .listbox {
+                background:#ffbdde;
+                margin:30px;
+                border:solid 1px #46AF16;
+                height:50px;
+                border-radius:25px;
+            }
+            .modal {
+              position: fixed;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 9999;
+              opacity: 0;
+              visibility: hidden;
+              -webkit-transition: .6s;
+              transition: .6s;
+            }
+
+            .modal.is-show {
+              opacity: 1;
+              visibility: visible;
+            }
+
+            .modal_inner {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              -webkit-transform: translate(-50%, -50%);
+                      transform: translate(-50%, -50%);
+              width: 80%;
+              max-width: 600px;
+              padding: 50px;
+              background-color: #fff;
+              z-index: 2;
+            }
+
+            .modal_inner img {
+              width: 100%;
+            }
+
+            .modal_close {
+              position: absolute;
+              right: 0;
+              top: 10px;
+              width: 50px;
+              height: 50px;
+              line-height: 50px;
+              text-align: center;
+              cursor: pointer;
+            }
+
+            .modal_close i {
+              font-size: 20px;
+              color: #333;
+            }
+
+            .modal_background {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background-color: rgba(0, 0, 0, 0.8);
+              z-index: 1;
+              cursor: pointer;
+            }
+
+            .button{
+              font-size: 20px;
+            }
+        </style>
+        <script>
+            function cmdc(obj){
+            modal = obj.lastElementChild;
+            backGround = modal.lastElementChild;
+            modal.classList.add('is-show');
+            backGround.classList.add('is-show');
+            }
+            function cmde(obj){
+            modal.className="modal";
+            backGround.className="modal_background";
+            }
+            function ir(e) {
+            ivr = document.getElementById('ivr');
+            ivr.innerHTML = e;
+            cmde();
+            cmdc(document.getElementById('r'));
+            }
+            function invoke(obj){
+            cm = "sk!" + obj.elements[0].value;
+            for(it=1;it<obj.elements.length-1;it++){
+            cm = cm+ " " + obj.elements[it].value;
+            }
+            ch = "<%= ch %>";
+            var request = "ch=" + ch + "&cm=" + encodeURI(cm);
+            fetch("/dashboard/invoke",{method:"POST",headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8','Accept':'application/json'},body:request}).then(response => response.text()).then(data => ir(data))
+            }
+        </script>
+        <% for(i=0;i<cmds.length;i++){ %>
+        <div class="listbox" onclick="cmdc(this);">
+        <%= cmds[i]["res"]["name"] %><% if (cmds[i]["res"]["doc"]){ %>：<% if (cmds[i]["res"]["doc"]["sd"][ll]){ %><%= cmds[i]["res"]["doc"]["sd"][ll] %><% }else{ %><%= cmds[i]["res"]["doc"]["sd"]["default"] %><% } %><% } %>
+        <div id="modal" class="modal">
+            <div class="modal_inner">
+                 <button id="modal_close" class="modal_close" onclick="setTimeout(cmde,1000);">×close</button>
+                 <form>
+                 <input type="hidden" value="<%= cmds[i]["res"]["name"] %>">
+                 <% for(p = 0; p<cmds[i]["res"]["clean_params"].length;p++){ %>
+                 <% if(lpack[ll][cmds[i]["res"]["clean_params"][p]["name"]]){ %>
+                     <%= lpack[ll][cmds[i]["res"]["clean_params"][p]["name"]] %>
+                 <% }else{ %>
+                     <%= cmds[i]["res"]["clean_params"][p]["name"] %>
+                 <% } %>
+                 <input <% if(cmds[i]["res"]["clean_params"][p]["required"]){ %>required<% } %>>
+                 <% } %>
+                 <button onclick="invoke(this.parentElement);return false;">実行</button>
+                 </form>
+            </div>
+            <div id="modal_background" class="modal_background" onclick="setTimeout(cmde,1000);"></div>
+            </div>
+        </div>
+        <% } %>
+            <div id="r">
+            <div id="rmodal" class="modal">
+            <div class="modal_inner">
+                 <button id="modal_close" class="modal_close" onclick="setTimeout(cmde,1000);">×close</button>
+                 <div id="ivr"></div>
+            </div>
+            <div id="rmodal_background" class="modal_background" onclick="setTimeout(cmde,1000);"></div>
+            </div>
         <% } %>
     <% } %>
     </div>
