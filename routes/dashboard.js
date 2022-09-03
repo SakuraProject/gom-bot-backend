@@ -60,3 +60,31 @@ router.get('/', async function (req, res) {
     }
   }
 })
+router.post('/invoke', async function (req, res) {
+  const {cm,ch} = req.body;
+  const { token_type, access_token, refresh_token } = await oauth.refresh_token(req.cookies.refresh_token);
+  const { username, id } = await oauth.getUser(access_token)
+  const ws = module.parent.exports.ws.exports.ws;
+  res.cookie('refresh_token', refresh_token, {
+    httpOnly: true
+  });
+  r = {};
+  r["type"] = "cmd";
+  r["cmd"] = "invoke";
+  r["args"] = {};
+  r["args"]["id"] = id;
+  r["args"]["ch"] = ch;
+  r["args"]["content"] = cm;
+  console.log(JSON.stringify(r))
+  ws.send(JSON.stringify(r));
+  while(!module.parent.exports.ws.exports.res["send"]){
+     await setTimeout(1);
+  }
+  while(!module.parent.exports.ws.exports.res["send"][id]){
+     await setTimeout(1);
+  }
+  send = module.parent.exports.ws.exports.res["send"][id]
+  res.header('Content-Type', 'text/plain;charset=utf-8');
+  res.send(send["content"]);
+})
+module.exports = router;
