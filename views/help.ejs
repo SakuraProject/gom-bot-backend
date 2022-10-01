@@ -18,14 +18,14 @@
     <% for(i=0;i<wsr["res"]["commands"].length;i++){ %>
     <a href="/help?cmd=<%= wsr["res"]["commands"][i]["res"]["name"] %>">
     <div class="listbox">
-    <%= wsr["res"]["commands"][i]["res"]["name"] %><% if (wsr["res"]["commands"][i]["res"]["doc"]){ %>：<% if (wsr["res"]["commands"][i]["res"]["doc"]["sd"][l]){ %><%= wsr["res"]["commands"][i]["res"]["doc"]["sd"][l] %><% }else{ %><%= wsr["res"]["commands"][i]["res"]["doc"]["sd"]["default"] %><% } %><% } %>
+    <%= wsr["res"]["commands"][i]["res"]["name"] %><% if (wsr["res"]["commands"][i]["res"]["doc"]){ %>：<%= wsr["res"]["commands"][i]["res"]["doc"].split(/\n|\r\n/)[0] %><% } %>
     </div>
     </a>
     <% } %>
     <% }else{ %>
     <% if (wsr["res"]["doc"]){ %>
     <pre>
-    <% if (wsr["res"]["doc"]["desc"][l]){ %><%= wsr["res"]["doc"]["desc"][l] %><% }else{ %><%= wsr["res"]["doc"]["desc"]["default"] %><% } %>
+    <%= wsr["res"]["doc"] %>
     </pre>
     <% }else{ %>
     このコマンドにはまだ説明文がありません。使い方はSakuraProjectサポートサーバーまでお問い合わせください
@@ -40,7 +40,7 @@
     <% for(i=0;i<wsr["res"].length;i++){ %>
     <a href="/help?cmd=<%= wsr["res"][i]["res"]["name"] %>">
     <div class="listbox">
-    <%= wsr["res"][i]["res"]["name"] %><% if (wsr["res"][i]["res"]["doc"]){ %>：<% if (wsr["res"][i]["res"]["doc"]["sd"][l]){ %><%= wsr["res"][i]["res"]["doc"]["sd"][l] %><% }else{ %><%= wsr["res"][i]["res"]["doc"]["sd"]["default"] %><% } %><% } %>
+    <%= wsr["res"][i]["res"]["name"] %><% if (wsr["res"][i]["res"]["doc"]){ %>：<%= wsr["res"][i]["res"]["doc"].split(/\n|\r\n/)[0] %><% } %>
     </div>
     </a>
     <% } %>
