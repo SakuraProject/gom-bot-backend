@@ -340,7 +340,7 @@ body {
         </script>
         <% for(i=0;i<cmds.length;i++){ %>
         <div class="listbox" onclick="cmdc(this);">
-        <%= cmds[i]["res"]["name"] %><% if (cmds[i]["res"]["doc"]){ %>：<% if (cmds[i]["res"]["doc"]["sd"][ll]){ %><%= cmds[i]["res"]["doc"]["sd"][ll] %><% }else{ %><%= cmds[i]["res"]["doc"]["sd"]["default"] %><% } %><% } %>
+        <%= cmds[i]["res"]["name"] %><% if (cmds[i]["res"]["doc"]){ %>：<%= cmds[i]["res"]["doc"].split(/\n|\r\n/)[0] %><% } %>
         <div id="modal" class="modal">
             <div class="modal_inner">
                  <button id="modal_close" class="modal_close" onclick="setTimeout(cmde,1000);">×close</button>
