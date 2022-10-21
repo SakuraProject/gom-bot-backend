@@ -20,7 +20,6 @@
               border-radius: 150% 0 150% 0;
               animation: animate-petal 10s linear;
             }
-
             .petal::after {
               content: "";
               position: absolute;
@@ -90,7 +89,6 @@
               bottom: 0;
               transform: rotate(45deg);
             }
-
             #drawer_input:checked ~ .drawer_open span::after {
               top: 0;
               transform: rotate(-45deg);
@@ -110,16 +108,118 @@
             .nav_list {
               list-style: none;
             }
-
             .nav_item a {
               color: #fff;
               text-decoration: none;
             }
-
-
             #drawer_input:checked ~ .nav_content {
               bottom: 0;
   
+            }
+        </style>
+        <style>
+            @keyframes animate-slidein {
+              0% {
+                right: 100vw;
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+                right: 0vw;
+              }
+            }
+            .divcont {
+               opacity: 0.7;
+               background:cyan;
+               width:100vw;
+               height:15vh;
+            }
+            .top-title {
+               height:20vh;
+               width:100vw;
+               animation: animate-opa 8s normal;
+            }
+            .topic1 {
+               height:15vh;
+               width:100vw;
+               background:#FFDBED;
+               animation: animate-topic1 15s normal;
+            }
+            .slide-In{
+            position:absolute;
+            animation: animate-slidein 10s normal;
+            }            
+            .slide-In1{
+            animation: animate-slidein1 10s normal;
+            }
+            @keyframes animate-slidein1 {
+              0% {
+                top:0px;
+                position:absolute;
+                left: 100vw;
+                opacity: 0;
+              }
+              100% {
+                top:0px;
+                opacity: 1;
+                left: 0vw;
+                position:absolute;
+              }
+            }
+            @keyframes animate-posstatic {
+              0% {
+                position:absolute;
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+                position:static;
+              }
+            }
+            @keyframes animate-opa {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+            @keyframes animate-topic1 {
+              0% {
+                opacity: 0;
+                top:20vh;
+              }
+              67% {
+                opacity: 0;
+                top:20vh;
+              }
+              100% {
+                opacity: 1;
+                top:35vh;
+              }
+            }
+            .footer {
+                bottom:0px;
+                width:100%;
+                position:fixed;
+                background:#FFDBED;
+                height:70px;
+            }
+            .start-button {
+                margin-top: 10px;
+                margin-right: 50px;
+                margin-bottom: 10px;
+                margin-left: 50px;
+                height:50px;
+                border-radius:20px;
+                color:#fff;
+                text-align:center;
+                line-height:50px;
+                box-shadow:
+                20px 5px 40px #CF77F3,
+                  0px 5px 40px #009BFF,
+                 -20px 5px 40px #2AC9DB;
+                 background-image: linear-gradient(-90deg, #CF77F3 0%, #009BFF 47%, #2AC9DB 100%);
             }
         </style>
         <script>
@@ -159,7 +259,88 @@
    
             </div>
             <h1>まだ作成中やで～</h1>
+            <div class="top-title">
+                <center><h2>Sakura BOT</h2></center>
+            </div>
+            <div class="slide-In" style="top:20vh;position:absolute;z-index:10;" id="conta">
+                <div class="divcont slide-In">
+                    <h2>SakuraBotはSakuraProjectが開発する新しい多機能Botです。他のBotよりも役に立つ便利なBotを目指しています</h2>
+                </div>
+            </div>
+            <div class="topic1" style="top:35vh;position:absolute;z-index:9;">
+                <ul>
+                    <li>VCで複数の音声の同時再生に対応</li>
+                    <li>UIを活用したわかりやすいデザイン</li>
+                    <li>他のBOTにはないような機能</li>
+                </ul>
+                などSakuraBotには様々な特徴があります
+            </div>
         </div>
+        <div class="footer"><h2><nobr>始まりはここからです<label class="start-button" for="trigger" style="position:absolute;right:5vw;top:0px;">始めましょう</label></nobr></h2></div>
+<div class="popup_wrap">
+  <input id="trigger" type="checkbox">
+  <div class="popup_overlay">
+    <label for="trigger" class="popup_trigger"></label>
+    <div class="popup_content">
+        <label for="trigger" class="close_btn">×</label>
+        <p><h2><center><a href="https://discord.gg/Q5KsKYJA2U" class="start-button" style="margin-top: 50px;margin-right: 50px;margin-bottom: 50px;margin-left: 50px;height:80px;">サポートサーバーに参加する</a><br><br><a href="https://discord.com/api/oauth2/authorize?client_id=985852917489737728&permissions=8&scope=bot%20applications.commands" class="start-button">SakuraBotを導入しましょう</a></center></h2></p>
+    </div>
+  </div>
+</div>
+<style>
+.popup_wrap input {
+  display: none;
+}
+.popup_overlay {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: #37beb03d;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0s 0.5s;
+  transform: scale(0);
+}
+.popup_trigger {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.popup_content {
+  position: relative;
+  align-self: center;
+  width: 75%;
+  max-width: 800px;
+  box-sizing: border-box;
+  background: #fff;
+  line-height: 1.4em;
+  transition: 0.5s;
+  border-radius: 12px;
+  box-shadow: 0 0 5px rgba(94, 94, 94, 0.7);
+}
+.popup_content p{
+    padding:20px 20px 5px 20px;
+    text-align: center;
+}
+.close_btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 30px;
+  cursor: pointer;
+  color:#37beb0;
+}
+.popup_wrap input:checked ~ .popup_overlay {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s;
+}
+</style>
     </body>
 
 </html>
