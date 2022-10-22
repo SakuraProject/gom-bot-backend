@@ -3,9 +3,9 @@
 
     <head>
         <meta charset="utf-8">
-        <title>gom-bot</title>
+        <title>Sakura bot</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+        <meta name="description" content="SakuraBotはSakuraProjectが開発する新しい多機能Botです。他のBotよりも役に立つ便利なBotを目指しています">
         <meta name="author" content="">
         <style>
             .cherry-blossom-container {
@@ -145,6 +145,23 @@
                background:#FFDBED;
                animation: animate-topic1 15s normal;
             }
+            .topic2 {
+               height:15vh;
+               width:100vw;
+               background:#90ee90;
+               animation: animate-topic2 20s normal;
+            }
+            .topic3 {
+               height:15vh;
+               width:100vw;
+               background:#FFDBED;
+               animation: animate-topic3 25s normal;
+            }
+            .topic4 {
+               height:15vh;
+               width:100vw;
+               animation: animate-topic4 30s normal;
+            }
             .slide-In{
             position:absolute;
             animation: animate-slidein 10s normal;
@@ -198,6 +215,72 @@
                 top:35vh;
               }
             }
+            @keyframes animate-topic2 {
+              0% {
+                opacity: 0;
+                top:20vh;
+              }
+              50% {
+                opacity: 0;
+                top:20vh;
+              }
+              75% {
+                opacity: 1;
+                top:35vh;
+              }
+              100% {
+                opacity: 1;
+                top:50vh;
+              }
+            }
+            @keyframes animate-topic3 {
+              0% {
+                opacity: 0;
+                top:20vh;
+              }
+              40% {
+                opacity: 0;
+                top:20vh;
+              }
+              60% {
+                opacity: 1;
+                top:35vh;
+              }
+              80% {
+                opacity: 1;
+                top:50vh;
+              }
+              100% {
+                opacity: 1;
+                top:65vh;
+              }
+            }
+            @keyframes animate-topic4 {
+              0% {
+                opacity: 0;
+                top:20vh;
+              }
+              33% {
+                opacity: 0;
+                top:20vh;
+              }
+              50% {
+                opacity: 1;
+                top:35vh;
+              }
+              67% {
+                opacity: 1;
+                top:50vh;
+              }
+              84% {
+                opacity: 1;
+                top:65vh;
+              }
+              100% {
+                opacity: 1;
+                top:80vh;
+              }
+            }
             .footer {
                 bottom:0px;
                 width:100%;
@@ -207,9 +290,9 @@
             }
             .start-button {
                 margin-top: 10px;
-                margin-right: 15px;
+                margin-right: 50px;
                 margin-bottom: 10px;
-                margin-left: 15px;
+                margin-left: 50px;
                 height:50px;
                 border-radius:20px;
                 color:#fff;
@@ -258,9 +341,10 @@
                 </nav>
    
             </div>
-            <h1>まだ作成中やで～</h1>
             <div class="top-title">
-                <center><h2>Sakura BOT</h2></center>
+                <br>
+                <br>
+                <center><h1>Sakura BOT</h1></center>
             </div>
             <div class="slide-In" style="top:20vh;position:absolute;z-index:10;" id="conta">
                 <div class="divcont slide-In">
@@ -275,15 +359,34 @@
                 </ul>
                 などSakuraBotには様々な特徴があります
             </div>
+            <div class="topic2" style="top:50vh;position:absolute;z-index:8;">
+                <h2>SakuraBotは日々進化し続けています</h2>
+                これまでの改善には、ごみ箱リアクションによるメッセージの一部削除や有料読み上げソフトを利用したTTS機能、infoコマンドで確認出来る項目の追加とUIの改善などがあります
+            </div>
+            <div class="topic3" style="top:65vh;position:absolute;z-index:7;">
+                <h2>導入事例</h2>
+                <ul>
+                    <li>お問い合わせのメールをDiscordで確認するようにしたい　→　SakuraBotのメール機能を利用しました</li>
+                    <li>公式Twitterの内容をDiscordに転送したい　→ SakuraBotのtweetコマンドで実装しました</li>
+                    <li>discordで予定の時間にお知らせしてほしい　→　SakuraBotのスケジュール機能を利用しました</li>
+                </ul>
+            </div>
+            <div class="topic4" style="top:80vh;position:absolute;z-index:6;">
+                <h2>お問い合わせ先</h2>
+                <ul>
+                    <li>mail:<a href="mailto:support@sakura-bot.net">support@sakura-bot.net</a></li>
+                    <li>discord:<a href="https://discord.gg/Q5KsKYJA2U">サポートサーバー</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer"><h2><nobr>始まりはここからです<label class="start-button" for="trigger" style="position:absolute;right:0px;top:0px;">始めましょう</label></nobr></h2></div>
+        <div class="footer"><h2><nobr>始まりはここからです<label class="start-button" for="trigger" style="position:absolute;right:5vw;top:0px;">始めましょう</label></nobr></h2></div>
 <div class="popup_wrap">
   <input id="trigger" type="checkbox">
   <div class="popup_overlay">
     <label for="trigger" class="popup_trigger"></label>
     <div class="popup_content">
         <label for="trigger" class="close_btn">×</label>
-        <p><h3><center><a href="https://discord.gg/Q5KsKYJA2U" class="start-button" style="margin-top: 50px;margin-right: 15px;margin-bottom: 50px;margin-left: 15px;height:80px;">サポートサーバーに参加する</a><br><br><a href="https://discord.com/api/oauth2/authorize?client_id=985852917489737728&permissions=8&scope=bot%20applications.commands" class="start-button">SakuraBotを導入しましょう</a></center></h3></p>
+        <p><h2><center><a href="https://discord.gg/Q5KsKYJA2U" class="start-button" style="margin-top: 50px;margin-right: 50px;margin-bottom: 50px;margin-left: 50px;height:80px;">サポートサーバーに参加する</a><br><br><a href="https://discord.com/api/oauth2/authorize?client_id=985852917489737728&permissions=8&scope=bot%20applications.commands" class="start-button">SakuraBotを導入しましょう</a></center></h2></p>
     </div>
   </div>
 </div>
