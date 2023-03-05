@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/free-RT/gom-bot-backend#readme",
   "dependencies": {
+    "axios": "^0.27.2",
+    "discord-oauth2": "^2.10.0",
     "ejs": "^3.1.8",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "morgan": "^1.10.0"
   }
 }

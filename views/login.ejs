@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ログイン</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <h6>自動でdiscordのログインページに飛びます</h6>
+        <script>
+            const oauth_url = "https://discord.com/api/oauth2/authorize?client_id=985852917489737728&redirect_uri=https%3A%2F%2Fminato37103710-free-rt-gom-bot-backend-97qv56w6q3xp9w-3000.githubpreview.dev%2Flogin&response_type=code&scope=identify"
+            //5秒後に自動リダイレクト
+            setTimeout(function(){
+                window.location.href = oauth_url;
+            }, 5000);
+        </script>
+    </body>
+</html>
