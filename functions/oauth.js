@@ -4,16 +4,17 @@ const { client_id, client_secret, redirect_uri } = require('../config.json');
 async function getToken(code) {
 
     try {
-        const oauthResult = await fetch.post('https://discord.com/api/oauth2/token', new URLSearchParams({
+        param = new URLSearchParams({
                 client_id: client_id,
                 client_secret: client_secret,
                 code: code,
                 grant_type: 'authorization_code',
                 redirect_uri: redirect_uri,
                 scope: 'identify',
-            }).toString(),{
+            }).toString();
+        const oauthResult = await fetch.post('https://discord.com/api/oauth2/token', param,{
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded','Content-Length':"207",
+                'Content-Type': 'application/x-www-form-urlencoded','Content-Length':param.length,
             },
         });
         const oauthData = oauthResult.data;
