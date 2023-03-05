@@ -4,22 +4,19 @@ const { client_id, client_secret, redirect_uri } = require('../config.json');
 async function getToken(code) {
 
     try {
-        const oauthResult = await fetch('https://discord.com/api/oauth2/token', {
-            method: 'POST',
-            body: new URLSearchParams({
+        const oauthResult = await fetch.post('https://discord.com/api/oauth2/token', new URLSearchParams({
                 client_id: client_id,
                 client_secret: client_secret,
-                code,
+                code: code,
                 grant_type: 'authorization_code',
                 redirect_uri: redirect_uri,
                 scope: 'identify',
-            }),
+            }).toString(),{
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded','Content-Length':"207",
             },
         });
-
-        const oauthData = await oauthResult.json();
+        const oauthData = oauthResult.data;
         return oauthData;
 
     } catch (error) {
@@ -31,21 +28,20 @@ async function getToken(code) {
 }
 
 async function refresh_token(refresh_token) {
-    const refreshResult = await fetch('https://discord.com/api/oauth2/token', {
-        method: 'POST',
-        body: new URLSearchParams({
+    const refreshResult = await fetch.post('https://discord.com/api/oauth2/token',new URLSearchParams({
             client_id: client_id,
             client_secret: client_secret,
             grant_type: 'refresh_token',
             refresh_token,
+            redirect_uri: redirect_uri,
             scope: 'identify',
-        }),
+        }).toString(), {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
     });
 
-    const refreshed_token = await refreshResult.json();
+    const refreshed_token = await refreshResult.data;
     return refreshed_token;
 }
 
@@ -55,7 +51,7 @@ async function getUser(access_token) {
             authorization: `Bearer ${access_token}`,
         },
     });
-    const userData = await userResult.json();
+    const userData = userResult.data;
     return userData;
     
 }

@@ -10,12 +10,12 @@ router.get('/', async function (req, res) {
 
     if (code) {
 
-        const oauthdata = await oauth(code);
+        const oauthdata = await oauth.getToken(code);
 
         res.cookie('refresh_token', oauthdata.refresh_token, {
             httpOnly: true
         });
-        const userdata = await userdat(oauthdata.token_type, oauthdata.access_token);
+        const userdata = await oauth.getUser( oauthdata.access_token);
         res.redirect('/');
         
     } else {
@@ -27,8 +27,8 @@ router.get('/', async function (req, res) {
 
         } else {
 
-            const { token_type, access_token, refresh_token } = await refresh(req.cookies.refresh_token);
-            const { username, id } = await userdat(token_type, access_token)
+            const { token_type, access_token, refresh_token } = await oauth.refresh_token(req.cookies.refresh_token);
+            const { username, id } = await oauth.getUser(access_token)
 
             res.cookie('refresh_token', refresh_token, {
                 httpOnly: true
