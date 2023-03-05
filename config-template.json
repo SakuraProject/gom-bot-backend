@@ -1,0 +1,15 @@
+{
+    "client_id": "discordのidを入れてください",
+    "client_secret": "discordのsecretを入れてください",
+    "redirect_uri": "discord developer portalで登録したredirect_uriを入れてください",
+    "mysql": {
+       "host": "mysqlのサーバーアドレスを入力してください",
+       "user": "mysqlのユーザー名を入れてください",
+       "password": "mysqlのパスワードを入れてください",
+       "database": "データベース名を入れてください"
+    },
+    "hcaptcha": {
+       "sitekey": "hcaptchaのサイトキーを入力してください",
+       "secretkey": "hcaptchaのシークレットキーを入力してください"
+    }
+}

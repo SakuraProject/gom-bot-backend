@@ -3,14 +3,459 @@
 
     <head>
         <meta charset="utf-8">
-        <title>gom-bot</title>
+        <title>Sakura bot</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+        <meta name="description" content="SakuraBotはSakuraProjectが開発する新しい多機能Botです。他のBotよりも役に立つ便利なBotを目指しています">
         <meta name="author" content="">
+        <style>
+            .cherry-blossom-container {
+              position: relative;
+              width: 100%;
+              height: calc(110vh + 70px);
+              overflow: hidden;
+            }
+            .petal {
+              position: absolute;
+              background-color: #ffc0cb;
+              border-radius: 150% 0 150% 0;
+              animation: animate-petal 10s linear;
+            }
+            .petal::after {
+              content: "";
+              position: absolute;
+              top: -14%;
+              left: -10%;
+              display: block;
+              width: 100%;
+              height: 100%;
+              background-color: #ffc0cb;
+              border-radius: 150% 0 150% 0;
+              transform: rotate(15deg);
+            }
+            @keyframes animate-petal {
+              0% {
+                top: 0;
+                opacity: 0;
+                transform: rotate(0deg);
+              }
+              10% {
+                opacity: 1;
+              }
+              90% {
+                opacity: 1;
+              }
+              100% {
+                opacity: 0;
+                top: 100vh;
+                transform: rotate(3000deg);
+              }
+            }
+            .drawer_hidden {
+              display: none;
+            }
+            .drawer_open {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              right: 20px;
+              height: 20px;
+              width: 20px;
+              z-index: 100;
+              cursor: pointer;
+            }
+            .drawer_open span,
+            .drawer_open span:before,
+            .drawer_open span:after {
+              content: '';
+              display: block;
+              height: 3px;
+              width: 25px;
+              border-radius: 3px;
+              background: #333;
+              transition: 0.5s;
+              position: absolute;
+            }
+            .drawer_open span:before {
+              bottom: 8px;
+            }
+            .drawer_open span:after {
+              top: 8px;
+            }
+            #drawer_input:checked ~ .drawer_open span {
+              background: rgba(255, 255, 255, 0);
+            }
+            #drawer_input:checked ~ .drawer_open span::before {
+              bottom: 0;
+              transform: rotate(45deg);
+            }
+            #drawer_input:checked ~ .drawer_open span::after {
+              top: 0;
+              transform: rotate(-45deg);
+            }
+            .nav_content {
+              width: 100%;
+              height: 100%;
+              position: fixed;
+              bottom: 100%;
+              left: 0%;
+              z-index: 99;
+              background: rgb(110, 110, 110);
+              transition: .5s;
+              text-align: center;
+              padding-top: 20px;
+            }
+            .nav_list {
+              list-style: none;
+            }
+            .nav_item a {
+              color: #fff;
+              text-decoration: none;
+            }
+            #drawer_input:checked ~ .nav_content {
+              bottom: 0;
+  
+            }
+        </style>
+        <style>
+            @keyframes animate-slidein {
+              0% {
+                right: 100vw;
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+                right: 0vw;
+              }
+            }
+            .divcont {
+               opacity: 0.7;
+               background:cyan;
+               width:100vw;
+               height:15vh;
+            }
+            .top-title {
+               height:20vh;
+               width:100vw;
+               animation: animate-opa 8s normal;
+            }
+            .topic1 {
+               height:15vh;
+               width:100vw;
+               background:#FFDBED;
+               animation: animate-topic1 15s normal;
+            }
+            .topic2 {
+               height:20vh;
+               width:100vw;
+               background:#90ee90;
+               animation: animate-topic2 20s normal;
+            }
+            .topic3 {
+               height:25vh;
+               width:100vw;
+               background:#FFDBED;
+               animation: animate-topic3 25s normal;
+            }
+            .topic4 {
+               height:15vh;
+               width:100vw;
+               animation: animate-topic4 30s normal;
+            }
+            .slide-In{
+            position:absolute;
+            animation: animate-slidein 10s normal;
+            }            
+            .slide-In1{
+            animation: animate-slidein1 10s normal;
+            }
+            @keyframes animate-slidein1 {
+              0% {
+                top:0px;
+                position:absolute;
+                left: 100vw;
+                opacity: 0;
+              }
+              100% {
+                top:0px;
+                opacity: 1;
+                left: 0vw;
+                position:absolute;
+              }
+            }
+            @keyframes animate-posstatic {
+              0% {
+                position:absolute;
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+                position:static;
+              }
+            }
+            @keyframes animate-opa {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+            @keyframes animate-topic1 {
+              0% {
+                opacity: 0;
+                top:20vh;
+              }
+              67% {
+                opacity: 0;
+                top:20vh;
+              }
+              100% {
+                opacity: 1;
+                top:35vh;
+              }
+            }
+            @keyframes animate-topic2 {
+              0% {
+                opacity: 0;
+                top:20vh;
+                height:15vh;
+              }
+              50% {
+                opacity: 0;
+                top:20vh;
+                height:15vh;
+              }
+              75% {
+                opacity: 1;
+                top:35vh;
+                height:15vh;
+              }
+              100% {
+                opacity: 1;
+                top:50vh;
+                height:20vh;
+              }
+            }
+            @keyframes animate-topic3 {
+              0% {
+                opacity: 0;
+                top:20vh;
+                height:15vh;
+              }
+              40% {
+                opacity: 0;
+                top:20vh;
+                height:15vh;
+              }
+              60% {
+                opacity: 1;
+                top:35vh;
+                height:15vh;
+              }
+              80% {
+                opacity: 1;
+                top:50vh;
+                height:20vh;
+              }
+              100% {
+                opacity: 1;
+                top:70vh;
+                height:25vh;
+              }
+            }
+            @keyframes animate-topic4 {
+              0% {
+                opacity: 0;
+                top:20vh;
+              }
+              33% {
+                opacity: 0;
+                top:20vh;
+              }
+              50% {
+                opacity: 1;
+                top:35vh;
+              }
+              67% {
+                opacity: 1;
+                top:50vh;
+              }
+              84% {
+                opacity: 1;
+                top:70vh;
+              }
+              100% {
+                opacity: 1;
+                top:95vh;
+              }
+            }
+            .footer {
+                bottom:0px;
+                width:100%;
+                position:fixed;
+                background:#FFDBED;
+                height:70px;
+                z-index: 11;
+            }
+            .start-button {
+                margin-top: 10px;
+                margin-right: 15px;
+                margin-bottom: 10px;
+                margin-left: 15px;
+                height:50px;
+                border-radius:20px;
+                color:#fff;
+                text-align:center;
+                line-height:50px;
+                box-shadow:
+                20px 5px 40px #CF77F3,
+                  0px 5px 40px #009BFF,
+                 -20px 5px 40px #2AC9DB;
+                 background-image: linear-gradient(-90deg, #CF77F3 0%, #009BFF 47%, #2AC9DB 100%);
+            }
+        </style>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+              const section = document.querySelector('.cherry-blossom-container');
+              const createPetal = () => {
+                const petalEl = document.createElement('span');
+                petalEl.className = 'petal';
+                const minSize = 10;
+                const maxSize = 15;
+                const size = Math.random() * (maxSize + 1 - minSize) + minSize;
+                petalEl.style.width = `${size}px`;
+                petalEl.style.height = `${size}px`;
+                petalEl.style.left = Math.random() * innerWidth + 'px';
+                section.appendChild(petalEl);
+                setTimeout(() => {
+                  petalEl.remove();
+                }, 10000);
+              }
+              setInterval(createPetal, 300);
+            });
+        </script>
     </head>
 
     <body>
-        <h1>まだ作成中やで～</h1>
+        <div class="cherry-blossom-container">
+            <div class="nav">
+                <input id="drawer_input" class="drawer_hidden" type="checkbox">
+                <label for="drawer_input" class="drawer_open"><span></span></label>
+                <nav class="nav_content">
+                    <ul class="nav_list">
+                        <li class="nav_item"><a href="/help">help</a></li>
+                        <li class="nav_item"><a href="/rocations">サーバー掲示板</a></li>
+                        <li class="nav_item"><a href="https://discord.com/api/oauth2/authorize?client_id=985852917489737728&permissions=8&scope=bot%20applications.commands">SakuraBotを導入する</a></li>
+                    </ul>
+                </nav>
+   
+            </div>
+            <div class="top-title">
+                <br>
+                <br>
+                <center><h1>Sakura BOT</h1></center>
+            </div>
+            <div class="slide-In" style="top:20vh;position:absolute;z-index:10;" id="conta">
+                <div class="divcont slide-In">
+                    <h3>SakuraBotはSakuraProjectが開発する新しい多機能Botです。他のBotよりも役に立つ便利なBotを目指しています</h3>
+                </div>
+            </div>
+            <div class="topic1" style="top:35vh;position:absolute;z-index:9;">
+                <ul>
+                    <li>VCで複数の音声の同時再生に対応</li>
+                    <li>UIを活用したわかりやすいデザイン</li>
+                    <li>他のBOTにはないような機能</li>
+                </ul>
+                などSakuraBotには様々な特徴があります
+            </div>
+            <div class="topic2" style="top:50vh;position:absolute;z-index:8;overflow:scroll;">
+                <h3>SakuraBotは日々進化し続けています</h3>
+                これまでの改善には、ごみ箱リアクションによるメッセージの一部削除や有料読み上げソフトを利用したTTS機能、infoコマンドで確認出来る項目の追加とUIの改善などがあります
+            </div>
+            <div class="topic3" style="top:70vh;position:absolute;z-index:7;overflow:scroll;">
+                <h3>導入事例</h3>
+                <small>
+                <ul>
+                    <li>お問い合わせのメールをDiscordで確認するようにしたい　→　SakuraBotのメール機能を利用しました</li>
+                    <li>公式Twitterの内容をDiscordに転送したい　→ SakuraBotのtweetコマンドで実装しました</li>
+                    <li>discordで予定の時間にお知らせしてほしい　→　SakuraBotのスケジュール機能を利用しました</li>
+                </ul></small>
+            </div>
+            <div class="topic4" style="top:95vh;position:absolute;z-index:6;">
+                <h2>お問い合わせ先</h2>
+                <ul>
+                    <li>mail:<a href="mailto:support@sakura-bot.net">support@sakura-bot.net</a></li>
+                    <li>discord:<a href="https://discord.gg/Q5KsKYJA2U">サポートサーバー</a></li>
+                </ul>
+            </div>
+            <div style="height:70px;width:100%;top:110vh;position:absolute;"></div>
+        </div>
+        <div class="footer"><h2><nobr>始まりはここからです<label class="start-button" for="trigger" style="position:absolute;right:0px;top:0px;">始めましょう</label></nobr></h2></div>
+<div class="popup_wrap">
+  <input id="trigger" type="checkbox">
+  <div class="popup_overlay">
+    <label for="trigger" class="popup_trigger"></label>
+    <div class="popup_content">
+        <label for="trigger" class="close_btn">×</label>
+        <p><h3><center><a href="https://discord.gg/Q5KsKYJA2U" class="start-button" style="margin-top: 50px;margin-right: 15px;margin-bottom: 50px;margin-left: 15px;height:80px;">サポートサーバーに参加する</a><br><br><a href="https://discord.com/api/oauth2/authorize?client_id=985852917489737728&permissions=8&scope=bot%20applications.commands" class="start-button">SakuraBotを導入しましょう</a></center></h3></p>
+    </div>
+  </div>
+</div>
+<style>
+.popup_wrap input {
+  display: none;
+}
+.popup_overlay {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: #37beb03d;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0s 0.5s;
+  transform: scale(0);
+}
+.popup_trigger {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.popup_content {
+  position: relative;
+  align-self: center;
+  width: 75%;
+  max-width: 800px;
+  box-sizing: border-box;
+  background: #fff;
+  line-height: 1.4em;
+  transition: 0.5s;
+  border-radius: 12px;
+  box-shadow: 0 0 5px rgba(94, 94, 94, 0.7);
+}
+.popup_content p{
+    padding:20px 20px 5px 20px;
+    text-align: center;
+}
+.close_btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 30px;
+  cursor: pointer;
+  color:#37beb0;
+}
+.popup_wrap input:checked ~ .popup_overlay {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s;
+}
+</style>
     </body>
 
 </html>

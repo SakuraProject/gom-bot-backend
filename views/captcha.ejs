@@ -1,0 +1,17 @@
+<% if(!error){ %>
+<% if(reqkey){ %>
+<% if(!success){ %>
+<form method="post">
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+<div class="h-captcha" data-sitekey="<%= sitekey %>"></div>
+<input type="hidden" value="<%= reqkey %>" name="reqkey">
+<input type="submit" value="認証を完了する|confirm to verify">
+<% }else{ %>
+<h1>あなたの認証コードは<%= vcode %>です。discordサーバーに戻りセレクトボックスからこのコードを選択してください</h1>
+<% } %>
+<% }else{ %>
+<h1>403 Captcha をやり直してください</h1>
+<% } %>
+<% }else{ %>
+<%= error %>
+<% } %>
